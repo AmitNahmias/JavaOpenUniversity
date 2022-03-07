@@ -14,10 +14,8 @@
 
 import java.util.Scanner;
 
-public class Chess
-{ // #TODO: add docs
-    public static void main(String[] args)
-    { // #TODO: add docs
+public class Chess { // The class represents chess calculator that prints if there is a threat between two chessmen.
+    public static void main(String[] args) { // The function get as input two chessmen and there positions and prints if there is threat between them.
         final int MIN_ROW = 1, MAX_ROW = 8; // the limits of input value for rows
         final int MIN_COLUMN = 1, MAX_COLUMN = 8; // the limits of input value for columns
         final char KNIGHT = 'k', ROOK = 'r', BISHOP = 'b'; // inputs for each chessman
@@ -34,30 +32,23 @@ public class Chess
         int row2 = scan.nextInt();
         System.out.println("Please enter the number of column");
         int col2 = scan.nextInt();
-        if (first != second)
-        { // check if the chessmen are not identical
+        if (first != second) { // check if the chessmen are not identical
             if ((row1 >= MIN_ROW && row1 <= MAX_ROW && col1 >= MIN_COLUMN && col1 <= MAX_COLUMN) &&
-                    (row2 >= MIN_ROW && row2 <= MAX_ROW && col2 >= MIN_COLUMN && col2 <= MAX_COLUMN))
-            { // check if the positions is legal
+                    (row2 >= MIN_ROW && row2 <= MAX_ROW && col2 >= MIN_COLUMN && col2 <= MAX_COLUMN)) { // check if the positions is legal
                 if (row1 != row2 || col1 != col2)  // check chessmen in different positions
                 {
                     if ((first == KNIGHT || second == KNIGHT) && ((Math.abs(col1 - col2) == 2 &&
-                            Math.abs(row1 - row2) == 1) || (Math.abs(col1 - col2) == 1 && Math.abs(row1 - row2) == 2)))
-                    { // check if there is a knight and if he is threatening on the other chessman
+                            Math.abs(row1 - row2) == 1) || (Math.abs(col1 - col2) == 1 && Math.abs(row1 - row2) == 2))) { // check if there is a knight and if he is threatening on the other chessman
                         if (first == ROOK || second == ROOK)
                             System.out.println("knight threat rook");
                         else
                             System.out.println("knight threat bishop");
-                    }
-                    else if ((first == ROOK || second == ROOK) && ((col1 == col2) || (row1 == row2)))
-                    { // check if there is a rook and if he is threatening on the other chessman
+                    } else if ((first == ROOK || second == ROOK) && ((col1 == col2) || (row1 == row2))) { // check if there is a rook and if he is threatening on the other chessman
                         if (first == KNIGHT || second == KNIGHT)
                             System.out.println("rook threat knight");
                         else
                             System.out.println("rook threat bishop");
-                    }
-                    else if ((first == BISHOP || second == BISHOP) && (Math.abs(row1 - row2) == Math.abs(col1 - col2)))
-                    { // check if there is a bishop and if he is threatening on the other chessman
+                    } else if ((first == BISHOP || second == BISHOP) && (Math.abs(row1 - row2) == Math.abs(col1 - col2))) { // check if there is a bishop and if he is threatening on the other chessman
                         if (first == ROOK || second == ROOK)
                             System.out.println("bishop threat rook");
                         else
