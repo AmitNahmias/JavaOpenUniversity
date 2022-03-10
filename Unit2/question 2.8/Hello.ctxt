@@ -1,0 +1,6 @@
+#BlueJ class context
+comment0.target=Hello
+comment0.text=\r\n\ Oneliner\ that\ prints\ \r\n\ "Hello"\r\n\ \ \ \ \ \ \ \ \ "Hi"\r\n\ \ '?'\r\n\ \ \\\r\n\r\n\ @author\ amit\r\n\ @version\ 26.2.22\r\n
+comment1.params=args
+comment1.target=void\ main(java.lang.String[])
+numComments=2
