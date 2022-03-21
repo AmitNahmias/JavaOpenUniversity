@@ -93,6 +93,7 @@ public class Time1 {
 
     /**
      * Check if two time instances are equals by there values
+     *
      * @param other another time instance
      * @return True if they are equal, otherwise false
      */
@@ -102,15 +103,22 @@ public class Time1 {
 
     /**
      * Check if current time is before other time
+     *
      * @param other another time instance
      * @return True if he is before, otherwise false
      */
     public boolean before(Time1 other) {
-        if (_hour < other.getHour()) return true;
-        else return _minute < other.getMinute();
+        if (_hour < other.getHour())
+            return true;
+        else if (_hour == other.getHour())
+            return _minute < other.getMinute();
+        else
+            return false;
     }
+
     /**
      * Check if current time is after other time
+     *
      * @param other another time instance
      * @return True if he is after, otherwise false
      */
@@ -120,15 +128,17 @@ public class Time1 {
 
     /**
      * Calculate the difference in minutes between two time instances
+     *
      * @param other another time instance
      * @return The difference in minutes
      */
     public int difference(Time1 other) {
-        return ((_hour - other.getHour()) * MINUTES_IN_HOUR) + (_minute - other.getMinute());
+        return Math.abs(((_hour - other.getHour()) * MINUTES_IN_HOUR) + (_minute - other.getMinute()));
     }
 
     /**
      * Change time by minutes parameter
+     *
      * @param num minutes to change
      * @return new time instance after the change
      */
