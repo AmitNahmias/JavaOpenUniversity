@@ -4,7 +4,7 @@
  * compare between two time instances and find the difference between two times.
  *
  * @author Amit Nahmias
- * @version 22.3.2022
+ * @version 23.3.2022
  */
 
 public class Time2 {
@@ -47,14 +47,14 @@ public class Time2 {
      * Gets hour
      */
     public int getHour() {
-        return _hour;
+        return _minFromMid / MINUTES_IN_HOUR;
     }
 
     /**
      * Gets minutes
      */
     public int getMinute() {
-        return _minute;
+        return _minFromMid % MINUTES_IN_HOUR;
     }
 
     /**
@@ -63,7 +63,10 @@ public class Time2 {
      * @param num hour to set
      */
     public void setHour(int num) {
-        _hour = (num <= MAX_HOUR && num >= DEFAULT_VALUE) ? num : _hour;
+        if (num <= MAX_HOUR && num >= DEFAULT_VALUE) {
+            _hour = num;
+            _minFromMid = _minFromMid - (this.getHour() * MINUTES_IN_HOUR) + num * MINUTES_IN_HOUR;
+        }
     }
 
     /**
@@ -72,14 +75,17 @@ public class Time2 {
      * @param num minutes to set
      */
     public void setMinute(int num) {
-        _minute = (num <= MAX_MINUTE && num >= DEFAULT_VALUE) ? num : _minute;
+        if (num <= MAX_MINUTE && num >= DEFAULT_VALUE) {
+            _minute = num;
+            _minFromMid = _minFromMid - this.getMinute() + num;
+        }
     }
 
     /**
      * @return String that represents time in the following format: hours:minutes (22:50)
      */
     public String toString() {
-        String hours = String.valueOf(_hour), minutes = String.valueOf(_minute);
+        String hours = String.valueOf(this.getHour()), minutes = String.valueOf(this.getMinute());
         if (_hour <= MAX_SINGLE_DIGIT)
             hours = ZERO_AS_STRING + hours;
         if (_minute <= MAX_SINGLE_DIGIT)
@@ -101,7 +107,7 @@ public class Time2 {
      * @return True if they are equal, otherwise false
      */
     public boolean equals(Time2 other) {
-        return (other.getHour() == _hour && _minute == other.getMinute());
+        return (other.minFromMidnight() == _minFromMid);
     }
 
     /**
@@ -111,12 +117,7 @@ public class Time2 {
      * @return True if he is before, otherwise false
      */
     public boolean before(Time2 other) {
-        if (_hour < other.getHour())
-            return true;
-        else if (_hour == other.getHour())
-            return _minute < other.getMinute();
-        else
-            return false;
+        return _minFromMid < other.minFromMidnight();
     }
 
     /**
@@ -136,7 +137,7 @@ public class Time2 {
      * @return The difference in minutes
      */
     public int difference(Time2 other) {
-        return Math.abs(((_hour - other.getHour()) * MINUTES_IN_HOUR) + (_minute - other.getMinute()));
+        return _minFromMid - other.minFromMidnight();
     }
 
     /**
@@ -146,14 +147,14 @@ public class Time2 {
      * @return new time instance after the change
      */
     public Time2 addMinutes(int num) {
-        int timeInMinutes = this.minFromMidnight() + num;
+        int newTime = _minFromMid + num;
         int hours, minutes;
-        if (timeInMinutes > DEFAULT_VALUE) {
-            hours = (timeInMinutes / MINUTES_IN_HOUR) % HOURS_IN_DAY;
-            minutes = timeInMinutes % MINUTES_IN_HOUR;
+        if (newTime > DEFAULT_VALUE) {
+            hours = (newTime / MINUTES_IN_HOUR) % HOURS_IN_DAY;
+            minutes = newTime % MINUTES_IN_HOUR;
         } else {
-            hours = MAX_HOUR + (timeInMinutes / MINUTES_IN_HOUR) % HOURS_IN_DAY;
-            minutes = MINUTES_IN_HOUR + timeInMinutes % MINUTES_IN_HOUR;
+            hours = MAX_HOUR + (newTime / MINUTES_IN_HOUR) % HOURS_IN_DAY;
+            minutes = MINUTES_IN_HOUR + newTime % MINUTES_IN_HOUR;
         }
         return new Time2(hours, minutes);
     }
