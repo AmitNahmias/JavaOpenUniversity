@@ -1,7 +1,5 @@
 /**
- * The program creates time object in 24 hours format.
- * The user can create time instance and change the time by change hours/minutes, add number of minutes to the time,
- * compare between two time instances and find the difference between two times.
+ * Represents time - hours:minutes. Values cannot be negative.
  *
  * @author Amit Nahmias
  * @version 22.3.2022
@@ -16,14 +14,14 @@ public class Time1 {
     final int MAX_SINGLE_DIGIT = 9;
     final String ZERO_AS_STRING = "0";
 
-    private int _hour; // represents hours
-    private int _minute; // represents minutes
+    private int _hour;
+    private int _minute;
 
     /**
-     * Creates a new time object
+     * Constructs a Time1 object. Construct a new time instance with the specified hour and minute. hour should be between 0-23, otherwise it should be set to 0. minute should be between 0-59, otherwise it should be set to 0.
      *
-     * @param h the hour in the time
-     * @param m the minutes in the time
+     * @param h the hour of the time.
+     * @param m the minute of the time.
      */
     public Time1(int h, int m) {
         _hour = (h <= MAX_HOUR && h >= DEFAULT_VALUE) ? h : DEFAULT_VALUE;
@@ -31,9 +29,9 @@ public class Time1 {
     }
 
     /**
-     * Copy Constructor
+     * Copy constructor for Time1. Construct a time with the same instance variables as another time.
      *
-     * @param other time object to copy
+     * @param other The time object from which to construct the new time.
      */
     public Time1(Time1 other) {
         _hour = other._hour;
@@ -41,14 +39,18 @@ public class Time1 {
     }
 
     /**
-     * Gets hour
+     * Returns the hour of the time.
+     *
+     * @return The hour of the time.
      */
     public int getHour() {
         return _hour;
     }
 
     /**
-     * Gets minutes
+     * Returns the minute of the time.
+     *
+     * @return The minute of the time.
      */
     public int getMinute() {
         return _minute;
@@ -64,83 +66,82 @@ public class Time1 {
     }
 
     /**
-     * Set minutes, check if minutes value is valid
+     * Changes the hour of the time. If an illegal number is received hour will be unchanged.
      *
-     * @param num minutes to set
+     * @param num The new minute.
      */
     public void setMinute(int num) {
         _minute = (num <= MAX_MINUTE && num >= DEFAULT_VALUE) ? num : _minute;
     }
 
     /**
-     * @return String that represents time in the following format: hours:minutes (22:50)
+     * Return a string representation of this time (hh:mm).
+     *
+     * @return String representation of this time (hh:mm).
      */
     public String toString() {
         String hours = String.valueOf(_hour), minutes = String.valueOf(_minute);
-        if (_hour <= MAX_SINGLE_DIGIT)
-            hours = ZERO_AS_STRING + hours;
-        if (_minute <= MAX_SINGLE_DIGIT)
-            minutes = ZERO_AS_STRING + minutes;
+        if (_hour <= MAX_SINGLE_DIGIT) hours = ZERO_AS_STRING + hours;
+        if (_minute <= MAX_SINGLE_DIGIT) minutes = ZERO_AS_STRING + minutes;
         return hours + ":" + minutes;
     }
 
     /**
-     * @return how many minutes has passed from midnight
+     * Return the amount of minutes since midnight.
+     *
+     * @return amount of minutes since midnight.
      */
     public int minFromMidnight() {
         return _hour * MINUTES_IN_HOUR + _minute;
     }
 
     /**
-     * Check if two time instances are equals by there values
+     * Check if the received time is equal to this time.
      *
-     * @param other another time instance
-     * @return True if they are equal, otherwise false
+     * @param other The time to be compared with this time.
+     * @return True if the received time is equal to this time.
      */
     public boolean equals(Time1 other) {
         return (other.getHour() == _hour && _minute == other.getMinute());
     }
 
     /**
-     * Check if current time is before other time
+     * Check if this time is before a received time.
      *
-     * @param other another time instance
-     * @return True if he is before, otherwise false
+     * @param other The time to check if this point is before.
+     * @return True if this time is before other time.
      */
     public boolean before(Time1 other) {
-        if (_hour < other.getHour())
-            return true;
-        else if (_hour == other.getHour())
-            return _minute < other.getMinute();
-        else
-            return false;
+        if (_hour < other.getHour()) return true;
+        else if (_hour == other.getHour()) return _minute < other.getMinute();
+        else return false;
     }
 
     /**
-     * Check if current time is after other time
+     * Check if this time is after a received time.
      *
-     * @param other another time instance
-     * @return True if he is after, otherwise false
+     * @param other The time to check if this point is after.
+     * @return True if this time is after other time.
      */
     public boolean after(Time1 other) {
         return other.before(this);
     }
 
     /**
-     * Calculate the difference in minutes between two time instances
+     * Calculates the difference (in minutes) between two times. Assumption: this time is after other time.
      *
-     * @param other another time instance
-     * @return The difference in minutes
+     * @param other The time to check the difference to.
+     * @return int difference in minutes.
      */
     public int difference(Time1 other) {
         return Math.abs(((_hour - other.getHour()) * MINUTES_IN_HOUR) + (_minute - other.getMinute()));
     }
 
     /**
-     * Change time by minutes parameter
+     * Calculates new time after add X minutes.
      *
-     * @param num minutes to change
-     * @return new time instance after the change
+     * @param num minutes to add.
+     * @return new time instance after the change.
      */
     public Time1 addMinutes(int num) {
         int timeInMinutes = this.minFromMidnight() + num;
