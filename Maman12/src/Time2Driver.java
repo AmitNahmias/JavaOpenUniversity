@@ -27,5 +27,7 @@ public class Time2Driver {
         System.out.println("The difference in minutes between the first and second time is: " + firstTime.difference(secondTime));
 
         System.out.println("The string representation of the first time is: " + firstTime.toString());
+
+        System.out.println("Add time "+firstTime.addMinutes(60001));
     }
 }

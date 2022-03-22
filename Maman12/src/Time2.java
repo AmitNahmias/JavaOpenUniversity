@@ -16,8 +16,6 @@ public class Time2 {
     final int MAX_SINGLE_DIGIT = 9;
     final String ZERO_AS_STRING = "0";
 
-    int _hour; // represents hours
-    int _minute; // represents minutes
     private int _minFromMid;
 
     /**
@@ -27,9 +25,9 @@ public class Time2 {
      * @param m the minutes in the time
      */
     public Time2(int h, int m) {
-        _hour = (h <= MAX_HOUR && h >= DEFAULT_VALUE) ? h : DEFAULT_VALUE;
-        _minute = (m <= MAX_MINUTE && m >= DEFAULT_VALUE) ? m : DEFAULT_VALUE;
-        _minFromMid = this.minFromMidnight();
+        int hour = (h <= MAX_HOUR && h >= DEFAULT_VALUE) ? h : DEFAULT_VALUE;
+        int minute = (m <= MAX_MINUTE && m >= DEFAULT_VALUE) ? m : DEFAULT_VALUE;
+        _minFromMid = hour * MINUTES_IN_HOUR + minute;
     }
 
     /**
@@ -38,9 +36,9 @@ public class Time2 {
      * @param other time object to copy
      */
     public Time2(Time2 other) {
-        _hour = other._hour;
-        _minute = other._minute;
-        _minFromMid = other.minFromMidnight();
+        int hour = other.getHour();
+        int minute = other.getMinute();
+        _minFromMid = hour * MINUTES_IN_HOUR + minute;
     }
 
     /**
@@ -64,7 +62,6 @@ public class Time2 {
      */
     public void setHour(int num) {
         if (num <= MAX_HOUR && num >= DEFAULT_VALUE) {
-            _hour = num;
             _minFromMid = _minFromMid - (this.getHour() * MINUTES_IN_HOUR) + num * MINUTES_IN_HOUR;
         }
     }
@@ -76,7 +73,6 @@ public class Time2 {
      */
     public void setMinute(int num) {
         if (num <= MAX_MINUTE && num >= DEFAULT_VALUE) {
-            _minute = num;
             _minFromMid = _minFromMid - this.getMinute() + num;
         }
     }
@@ -86,9 +82,9 @@ public class Time2 {
      */
     public String toString() {
         String hours = String.valueOf(this.getHour()), minutes = String.valueOf(this.getMinute());
-        if (_hour <= MAX_SINGLE_DIGIT)
+        if (this.getHour() <= MAX_SINGLE_DIGIT)
             hours = ZERO_AS_STRING + hours;
-        if (_minute <= MAX_SINGLE_DIGIT)
+        if (this.getMinute() <= MAX_SINGLE_DIGIT)
             minutes = ZERO_AS_STRING + minutes;
         return hours + ":" + minutes;
     }
@@ -97,7 +93,7 @@ public class Time2 {
      * @return how many minutes has passed from midnight
      */
     public int minFromMidnight() {
-        return _hour * MINUTES_IN_HOUR + _minute;
+        return _minFromMid;
     }
 
     /**
