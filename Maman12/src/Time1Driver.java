@@ -26,8 +26,10 @@ public class Time1Driver {
         System.out.println("Is the first time after the second time? " + firstTime.after(secondTime));
 
         System.out.println("The difference in minutes between the second and first time is: " + secondTime.difference(firstTime));
-
+        Time1 time3 = firstTime.addMinutes(100);
+        
+        System.out.println("Adding 100 minutes to time: "+ firstTime+" return: "+time3);
+        
         System.out.println("The string representation of the first time is: " + firstTime.toString());
-
     }
 }
