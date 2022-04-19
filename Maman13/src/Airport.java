@@ -8,6 +8,7 @@
 
 public class Airport {
     final int MAX_FLIGHTS = 200;
+    final int INITIAL_FLIGHTS_NUMBER = 0;
 
     private Flight[] _flightsSchedule;
     private int _noOfFlights;
@@ -21,7 +22,7 @@ public class Airport {
     public Airport(String city) {
         _city = new String(city);
         _flightsSchedule = new Flight[MAX_FLIGHTS];
-        _noOfFlights = 0;
+        _noOfFlights = INITIAL_FLIGHTS_NUMBER;
     }
 
     /**
