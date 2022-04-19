@@ -49,7 +49,7 @@ public class Airport {
      * @return True if removed successfully.
      */
     public boolean removeFlight(Flight f) {
-        for (int flightNumber = 0; flightNumber < MAX_FLIGHTS; flightNumber++)
+        for (int flightNumber = 0; flightNumber < _noOfFlights; flightNumber++)
             if (_flightsSchedule[flightNumber].equals(f)) {
                 _flightsSchedule[flightNumber] = new Flight(_flightsSchedule[_noOfFlights - 1]);
                 _flightsSchedule[_noOfFlights - 1] = null;
