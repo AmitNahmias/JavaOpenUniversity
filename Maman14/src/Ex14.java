@@ -19,7 +19,11 @@ public class Ex14 {
      * we will see that the maximum operation that we can do is 2n,
      * that is because we start in the bottom left corner, and I allow only one single step 'down' or 'right'.
      * In the worst case we will do n steps down and then n step right or vice versa -> 2n steps.
-     * From common reasons the memory complications will be also from order of O(n).
+     * </p>
+     * <p>
+     * The memory complications is from order of O(1), because we didn't created the array,
+     * and just initialized row, column and temp.
+     * </p>
      *
      * @param m   Two dimensions array full in integers.
      * @param val Value to search inside m.
@@ -46,7 +50,11 @@ public class Ex14 {
      * find the two rows that the number can be inside them (kind of range),
      * then iterate over the two rows as regular search,
      * because of that the run time will be maximum O(2n) -> O(n).
-     * From common reasons the memory complications will be also from order of O(n).
+     * </p>
+     * <p>
+     * The memory complications is from order of O(1), because we didn't created the array,
+     * and just initialized low, high mid, and i.
+     * </p>
      *
      * @param m   Two dimensions array full in integers.
      * @param val Value to search inside m.
@@ -66,28 +74,27 @@ public class Ex14 {
     }
 
 
-    public static int sumUntil(int number) {
-        int sum = 0;
-        for (int i = 0; i < number; i++)
-            sum = sum + i;
-        return sum;
-    }
-
     /**
-     * @param a
-     * @return
+     * Get array full of integers and returns the number of sorted sub-arrays (at least in length 2) that the array contains.
+     * <p>
+     * Run time is O(n) -> iterate over all the array while array's length is n.
+     * </p>
+     * <p>
+     * The memory complications is from order of O(1) because we didn't created the array,
+     * and just initialized sum, counter and i.
+     * </p>
+     *
+     * @param a Input array.
+     * @return The number of sorted sub-arrays.
      */
     public static int strictlyIncreasing(int[] a) {
         int sum = 0, counter = 1;
         for (int i = 0; i < a.length - 1; i++) {
-            if (a[i] < a[i + 1])
+            if (a[i] < a[i + 1]) {
                 counter++;
-            else {
-                sum = sum + sumUntil(counter);
-                counter = 1;
-            }
+                sum = sum + counter - 1;
+            } else counter = 1;
         }
-        sum = sum + sumUntil(counter);
         return sum;
     }
 
