@@ -6,7 +6,7 @@ public class Mmn14StudentTester441 {
 
 		testQ1What();
 		testQ1Test();
-//		testQ2();
+		testQ2();
 //		testQ3();
 //		testQ4();
 
@@ -31,15 +31,15 @@ public class Mmn14StudentTester441 {
 		System.out.println("array a = \n" + arr2d2str(a));
 	}
 
-//	private static void testQ2() {
-//		System.out.println("\n=============== test Q2 strictlyIncreasing Start =================");
-//		int[] a = { 1, 2, 4, 4, 5 };
-//		int res = Ex14.strictlyIncreasing(a);
-//		System.out.println("run strictlyIncreasing(a) expected " + 4 + " and got " + res);
-//		System.out.println("array a = \n" + arr2str(a));
-//		System.out.println("============================== test Q2 strictlyIncreasing End =================\n");
-//	}
-//
+	private static void testQ2() {
+		System.out.println("\n=============== test Q2 strictlyIncreasing Start =================");
+		int[] a = { 1, 2, 4, 4, 5 };
+		int res = Ex14.strictlyIncreasing(a);
+		System.out.println("run strictlyIncreasing(a) expected " + 4 + " and got " + res);
+		System.out.println("array a = \n" + arr2str(a));
+		System.out.println("============================== test Q2 strictlyIncreasing End =================\n");
+	}
+
 //	private static void testQ3() {
 //		System.out.println("\n=============== test Q3 longestFlatSequence  Start =================");
 //		int[] a = { 4, 5, 6, 5, 4, 3 };

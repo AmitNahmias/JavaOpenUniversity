@@ -66,4 +66,30 @@ public class Ex14 {
     }
 
 
+    public static int sumUntil(int number) {
+        int sum = 0;
+        for (int i = 0; i < number; i++)
+            sum = sum + i;
+        return sum;
+    }
+
+    /**
+     * @param a
+     * @return
+     */
+    public static int strictlyIncreasing(int[] a) {
+        int sum = 0, counter = 1;
+        for (int i = 0; i < a.length - 1; i++) {
+            if (a[i] < a[i + 1])
+                counter++;
+            else {
+                sum = sum + sumUntil(counter);
+                counter = 1;
+            }
+        }
+        sum = sum + sumUntil(counter);
+        return sum;
+    }
+
+
 }

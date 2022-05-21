@@ -2,6 +2,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -75,37 +76,37 @@ public class Ex14Test {
         assertTrue(Ex14.findValTest(arrTest, 2));
 
     }
-//
-//    @Test
-//    @DisplayName("Testing strictlyIncreasing")
-//    public void strictlyIncreasingTest(){
-//        int[] arr1 = {1,2,4,4,5};
-//        int[] arr2 = {1,2,4,4,5,6};
-//        int[] arr3 = {1,2,4,4,5,1,2};
-//        int[] arr4 = {1,2,4,4,5,6,2,3,4};
-//        int[] arr5 = {1,2,3,4,5};
-//        int[] arr6 = {1,3,2};
-//        int[] arr7 = {5,4,3,2,1};
-//        int[] arr8 = {1,3};
-//        int[] arr9 = {3,1};
-//        int[] arr10 = {1};
-//
-//        assertEquals(4, Ex14.strictlyIncreasing(arr1));
-//        assertEquals(6, Ex14.strictlyIncreasing(arr2));
-//        assertEquals(5, Ex14.strictlyIncreasing(arr3));
-//        assertEquals(9, Ex14.strictlyIncreasing(arr4));
-//        assertEquals(1, Ex14.strictlyIncreasing(arr6));
-//        assertEquals(0, Ex14.strictlyIncreasing(arr7));
-//        assertEquals(10, Ex14.strictlyIncreasing(arr5));
-//        assertEquals(1, Ex14.strictlyIncreasing(arr8));
-//        assertEquals(0, Ex14.strictlyIncreasing(arr9));
-//        assertEquals(0, Ex14.strictlyIncreasing(arr10));
-//    }
-//
-//    @Test
-//    @DisplayName("Testing longestFlatSequence")
-//    public void longestFlatSequenceTest(){
-//
-//    }
+
+    @Test
+    @DisplayName("Testing strictlyIncreasing")
+    public void strictlyIncreasingTest(){
+        int[] arr1 = {1,2,4,4,5};
+        int[] arr2 = {1,2,4,4,5,6};
+        int[] arr3 = {1,2,4,4,5,1,2};
+        int[] arr4 = {1,2,4,4,5,6,2,3,4};
+        int[] arr5 = {1,2,3,4,5};
+        int[] arr6 = {1,3,2};
+        int[] arr7 = {5,4,3,2,1};
+        int[] arr8 = {1,3};
+        int[] arr9 = {3,1};
+        int[] arr10 = {1};
+
+        assertEquals(4, Ex14.strictlyIncreasing(arr1));
+        assertEquals(6, Ex14.strictlyIncreasing(arr2));
+        assertEquals(5, Ex14.strictlyIncreasing(arr3));
+        assertEquals(9, Ex14.strictlyIncreasing(arr4));
+        assertEquals(1, Ex14.strictlyIncreasing(arr6));
+        assertEquals(0, Ex14.strictlyIncreasing(arr7));
+        assertEquals(10, Ex14.strictlyIncreasing(arr5));
+        assertEquals(1, Ex14.strictlyIncreasing(arr8));
+        assertEquals(0, Ex14.strictlyIncreasing(arr9));
+        assertEquals(0, Ex14.strictlyIncreasing(arr10));
+    }
+
+    @Test
+    @DisplayName("Testing longestFlatSequence")
+    public void longestFlatSequenceTest(){
+
+    }
 
 }
