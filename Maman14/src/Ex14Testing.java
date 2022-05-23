@@ -219,34 +219,34 @@ public class Ex14Testing {
         assertEquals(4, Ex14.longestFlatSequence(a6), "\nArray: \n" + arr2str(a6));
     }
 
-//    @Test
-//    @DisplayName("Testing Q4: findMaximum")
-//    public void findMaximum() {
-//        int[][] a1 = new int[][]{{1, 1, -1, 1, 1}, {1, 0, 0, -1, 1}, {1, 1, 1, 1, -1}, {-1, -1, 1, 1, 1}, {1, 1, -1, -1, 1},};
-//        assertEquals(9, Ex14.findMaximum(a1), "\nArray: \n" + arr2d2str(a1));
-//        int[][] a2 = {{1, 1}, {1, 1}};
-//        assertEquals(4, Ex14.findMaximum(a2), "\nArray: \n" + arr2d2str(a2));
-//        int[][] a3 = {{-1, -1}, {-1, -1}};
-//        assertEquals(-1, Ex14.findMaximum(a3), "\nArray: \n" + arr2d2str(a3));
-//        int[][] a4 = {{-1}, {1}};
-//        assertEquals(-1, Ex14.findMaximum(a4), "\nArray: \n" + arr2d2str(a4));
-//        int[][] a5 = {{1}, {1}};
-//        assertEquals(2, Ex14.findMaximum(a5), "\nArray: \n" + arr2d2str(a5));
-//        int[][] a6 = {{1, 1, 1, 1, 1, 1}, {0, 0, 0, 0, 0, 0}};
-//        assertEquals(6, Ex14.findMaximum(a6), "\nArray: \n" + arr2d2str(a6));
-//        int[][] a7 = {{0, 1, 0}, {0, 1, -1}, {0, 1, -1}};
-//        assertEquals(3, Ex14.findMaximum(a7), "\nArray: \n" + arr2d2str(a7));
-//        int[][] a8 = {{0, -1, 1}, {-1, 1, 0}, {0, 1, -1}};
-//        assertEquals(0, Ex14.findMaximum(a8), "\nArray: \n" + arr2d2str(a8));
-//        int[][] a9 = {{0, 1}, {-1, 1}, {-1, 0}};
-//        assertEquals(2, Ex14.findMaximum(a9), "\nArray: \n" + arr2d2str(a9));
-//        int[][] a10 = {{1, 1, 0, 1, -1}, {-1, 1, 0, -1, 0}, {-1, 1, 0, -1, -1}};
-//        assertEquals(4, Ex14.findMaximum(a10), "\nArray: \n" + arr2d2str(a10));
-//        int[][] a11 = {{1, -1, -1}, {1, 1, 1}, {0, 0, 0}, {1, -1, -1}, {-1, 0, -1}};
-//        assertEquals(3, Ex14.findMaximum(a11), "\nArray: \n" + arr2d2str(a11));
-//        int[][] a12 = {{0}, {0}};
-//        assertEquals(0, Ex14.findMaximum(a12), "\nArray: \n" + arr2d2str(a12));
-//    }
+    @Test
+    @DisplayName("Testing Q4: findMaximum")
+    public void findMaximum() {
+        int[][] a1 = new int[][]{{1, 1, -1, 1, 1}, {1, 0, 0, -1, 1}, {1, 1, 1, 1, -1}, {-1, -1, 1, 1, 1}, {1, 1, -1, -1, 1},};
+        assertEquals(9, Ex14.findMaximum(a1), "\nArray: \n" + arr2d2str(a1));
+        int[][] a2 = {{1, 1}, {1, 1}};
+        assertEquals(4, Ex14.findMaximum(a2), "\nArray: \n" + arr2d2str(a2));
+        int[][] a3 = {{-1, -1}, {-1, -1}};
+        assertEquals(-1, Ex14.findMaximum(a3), "\nArray: \n" + arr2d2str(a3));
+        int[][] a4 = {{-1}, {1}};
+        assertEquals(-1, Ex14.findMaximum(a4), "\nArray: \n" + arr2d2str(a4));
+        int[][] a5 = {{1}, {1}};
+        assertEquals(2, Ex14.findMaximum(a5), "\nArray: \n" + arr2d2str(a5));
+        int[][] a6 = {{1, 1, 1, 1, 1, 1}, {0, 0, 0, 0, 0, 0}};
+        assertEquals(6, Ex14.findMaximum(a6), "\nArray: \n" + arr2d2str(a6));
+        int[][] a7 = {{0, 1, 0}, {0, 1, -1}, {0, 1, -1}};
+        assertEquals(3, Ex14.findMaximum(a7), "\nArray: \n" + arr2d2str(a7));
+        int[][] a8 = {{0, -1, 1}, {-1, 1, 0}, {0, 1, -1}};
+        assertEquals(0, Ex14.findMaximum(a8), "\nArray: \n" + arr2d2str(a8));
+        int[][] a9 = {{0, 1}, {-1, 1}, {-1, 0}};
+        assertEquals(2, Ex14.findMaximum(a9), "\nArray: \n" + arr2d2str(a9));
+        int[][] a10 = {{1, 1, 0, 1, -1}, {-1, 1, 0, -1, 0}, {-1, 1, 0, -1, -1}};
+        assertEquals(4, Ex14.findMaximum(a10), "\nArray: \n" + arr2d2str(a10));
+        int[][] a11 = {{1, -1, -1}, {1, 1, 1}, {0, 0, 0}, {1, -1, -1}, {-1, 0, -1}};
+        assertEquals(3, Ex14.findMaximum(a11), "\nArray: \n" + arr2d2str(a11));
+        int[][] a12 = {{0}, {0}};
+        assertEquals(0, Ex14.findMaximum(a12), "\nArray: \n" + arr2d2str(a12));
+    }
 
     private static String arr2str(int[] a) {
         String str = "{" + a[0];

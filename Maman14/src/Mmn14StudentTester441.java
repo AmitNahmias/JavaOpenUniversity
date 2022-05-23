@@ -7,7 +7,7 @@ public class Mmn14StudentTester441 {
         testQ1Test();
         testQ2();
         testQ3();
-//		testQ4();
+		testQ4();
 
         System.out.println("\n=============== Test mmn14 End  =================*/");
 
@@ -51,16 +51,16 @@ public class Mmn14StudentTester441 {
 
     }
 
-//	private static void testQ4() {
-//		System.out.println("\n=============== test Q4 findMaximum Start =================");
-//		int[][] a = { { 1, 1, -1, 1, 1 }, { 1, 0, 0, -1, 1 }, { 1, 1, 1, 1, -1 }, { -1, -1, 1, 1, 1 },
-//				{ 1, 1, -1, -1, 1 } };
-//
-//		int res = Ex14.findMaximum(a);
-//		System.out.println("run findMaximum(a) expected " + 9 + " and got " + res);
-//		System.out.println("array a= \n" + arr2d2str(a));
-//		System.out.println("============================== test Q4 findMaximum End =================\n");
-//	}
+	private static void testQ4() {
+		System.out.println("\n=============== test Q4 findMaximum Start =================");
+		int[][] a = { { 1, 1, -1, 1, 1 }, { 1, 0, 0, -1, 1 }, { 1, 1, 1, 1, -1 }, { -1, -1, 1, 1, 1 },
+				{ 1, 1, -1, -1, 1 } };
+
+		int res = Ex14.findMaximum(a);
+		System.out.println("run findMaximum(a) expected " + 9 + " and got " + res);
+		System.out.println("array a= \n" + arr2d2str(a));
+		System.out.println("============================== test Q4 findMaximum End =================\n");
+	}
 
     private static String arr2str(int[] a) {
         String str = "{" + a[0];
