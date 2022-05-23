@@ -105,8 +105,7 @@ public class Ex14 {
      * @return The length of the longest flat sub-sequence in array.
      */
     public static int longestFlatSequence(int[] arr) {
-        if (arr.length <= 1)
-            return arr.length;
+        if (arr.length <= 1) return arr.length;
         return findMaxSubArray(arr, 0);
     }
 
@@ -122,8 +121,7 @@ public class Ex14 {
      * @return Length of flat sequence (counter).
      */
     public static int lengthFlat(int[] arr, int index, int first, int second, int counter, boolean equal) {
-        if (index == arr.length - 1)
-            return counter;
+        if (index == arr.length - 1) return counter;
         else if (equal) {
             if (arr[index + 1] == first) {
                 return lengthFlat(arr, index + 1, first, second, counter + 1, true);
@@ -138,17 +136,10 @@ public class Ex14 {
 
     }
 
-    /**
-     * Find the maximum length of flat sub-sequence inside array.
-     *
-     * @param arr   Input array - full in integers.
-     * @param index Start index.
-     * @return the maximum length of flat sub-sequence.
-     */
     private static int findMaxSubArray(int[] arr, int index) {
         if (index == arr.length - 1)
             return 1;
-        else {
+        else { // Find the maximum length of flat sub-sequence inside array.
             return Math.max(lengthFlat(arr, index, arr[index], arr[index + 1], 1, arr[index] == arr[index + 1]), findMaxSubArray(arr, index + 1));
         }
     }
@@ -167,125 +158,46 @@ public class Ex14 {
     /**
      * Calculate longest valid track in 2D array.
      *
-     * @param mat Input two dimensions array.
-     * @param row Row to begin.
+     * @param mat    Input two dimensions array.
+     * @param row    Row to begin.
      * @param column Column to begin.
      * @return The longest track in array.
      */
-    private static int findMaximum(int[][] mat, int row, int column) {
-        int down = 0, right =0, left =0;
+    public static int findMaximum(int[][] mat, int row, int column) {
+        int down = 0, right = 0, left = 0;
 
-        if (row < mat.length - 1)
-        {
-            if (mat[row+1][column] == 0)
-            { // going down to 0
-                down = findMaximum(mat,row+1,column);
-            }
-            else if (mat[row+1][column] == 1)
-            { // going down to 1
-                down = 1 + findMaximum(mat,row+1,column);
+        if (row < mat.length - 1) {
+            if (mat[row + 1][column] == 0) { // going down to 0
+                down = findMaximum(mat, row + 1, column);
+            } else if (mat[row + 1][column] == 1) { // going down to 1
+                down = 1 + findMaximum(mat, row + 1, column);
             }
         }
 
-        if (isEqual(row))
-        {
-            if (column + 1 <= mat[0].length - 1)
-            {
-                if (mat[row][column + 1] == 0)
-                { // going right to 0
+        if (isEqual(row)) {
+            if (column + 1 <= mat[0].length - 1) {
+                if (mat[row][column + 1] == 0) { // going right to 0
                     right = findMaximum(mat, row, column + 1);
-                }
-                else if (mat[row][column + 1] == 1)
-                { // going right to 1
+                } else if (mat[row][column + 1] == 1) { // going right to 1
                     right = 1 + findMaximum(mat, row, column + 1);
                 }
-//                return down > right ? down : right;
-
             }
         }
-        else
-        {
-            if (column - 1 >= 0)
-            {
-                if (mat[row][column - 1] == 0 )
-                { // going left to 0
+        else {
+            if (column - 1 >= 0) {
+                if (mat[row][column - 1] == 0) { // going left to 0
                     left = findMaximum(mat, row, column - 1);
-                }
-                else if(mat[row][column - 1] == 1)
-                { // going left to 1
+                } else if (mat[row][column - 1] == 1) { // going left to 1
                     left = 1 + findMaximum(mat, row, column - 1);
                 }
-//                return down > left ? down : left;
             }
-
         }
-
-//        if (row==mat.length-1 && column==mat[0].length-1)
-//            if (mat[row][column] >= 0)
-//            return mat[row][column] + mat[0][0];
         return (down > left ? down : left) > right ? (down > left ? down : left) : right;
     }
 
-    /**
-     * Returns if number is equal.
-     *
-     * @param number Input number.
-     * @return True if equal, otherwise false.
-     */
-    private static boolean isEqual(int number) {
+
+    private static boolean isEqual(int number) { // returns if number is equal.
         return number % 2 == 0;
     }
 
-//    public static int maxSumSnake(int[][] m) {
-//
-//        return maxSumSnake(m, 0, 0);
-//
-//    }
-
-//    private static int maxSumSnake(int[][] m, int i, int j) {
-//        final int BEEN_HERE = -10;
-//
-//        if (i == m.length - 1 && j == m[0].length - 1)
-//
-//            return m[i][j];
-//
-//        // avoid repeat a cell
-//
-//        int temp = m[i][j];
-//
-//        m[i][j] = BEEN_HERE;
-//
-//        // recurtion for all neighbors
-//        int up = -1, down = -1, left = -1, right = -1;
-//
-//        if (i - 1 >= 0 && Math.abs(temp - m[i - 1][j]) <= 1)
-//
-//            up = maxSumSnake(m, i - 1, j);
-//
-//        if (i + 1 < m.length && Math.abs(temp - m[i + 1][j]) <= 1)
-//
-//            down = maxSumSnake(m, i + 1, j);
-//
-//        if (j - 1 >= 0 && Math.abs(temp - m[i][j - 1]) <= 1)
-//
-//            left = maxSumSnake(m, i, j - 1);
-//
-//        if (j + 1 < m[0].length && Math.abs(temp - m[i][j + 1]) <= 1)
-//
-//            right = maxSumSnake(m, i, j + 1);
-//
-//        m[i][j] = temp;
-//        // couldn't find a path
-//
-//        if (up == -1 && down == -1 && left == -1 && right == -1)
-//
-//            return -1;
-//
-//        // return the max path
-//
-//        int max = Math.max(Math.max(up, down), Math.max(left, right));
-//
-//        return max + m[i][j];
-//
-//    }
 }
