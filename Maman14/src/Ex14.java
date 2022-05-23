@@ -98,5 +98,70 @@ public class Ex14 {
         return sum;
     }
 
+    /**
+     * Find the length of the longest flat sub-sequence in array.
+     *
+     * @param arr Input array - full in integers.
+     * @return The length of the longest flat sub-sequence in array.
+     */
+    public static int longestFlatSequence(int[] arr)
+    {
+        if (arr.length <= 1)
+            return arr.length;
+        return findMaxSubArray(arr, 0);
+    }
 
+    /**
+     * Find the length of flat sequence from specific index inside array.
+     *
+     * @param arr     Input array - full in integers.
+     * @param index   Start index.
+     * @param first   First flat number.
+     * @param second  Second flat number.
+     * @param counter Length of flat sequence.
+     * @param equal   Indicate if first and second are the same.
+     * @return Length of flat sequence (counter).
+     */
+    public static int lengthFlat(int[] arr, int index, int first, int second, int counter, boolean equal)
+    {
+        if (index == arr.length - 1)
+            return counter;
+        else if (equal)
+        {
+            if (arr[index + 1] == first)
+            {
+                return lengthFlat(arr, index + 1, first, second, counter + 1, true);
+            }
+            else if (arr[index + 1] + 1 == first || arr[index + 1] - 1 == first)
+            {
+                return lengthFlat(arr, index + 1, first, arr[index + 1], counter + 1, false);
+            }
+            else return counter;
+        }
+        else
+        {
+            if (arr[index + 1] == first || arr[index + 1] == second && (first - second == 1 || first - second == -1))
+            {
+                return lengthFlat(arr, index + 1, first, second, counter + 1, false);
+            } else return counter;
+        }
+
+    }
+
+    /**
+     * Find the maximum length of flat sub-sequence inside array.
+     *
+     * @param arr   Input array - full in integers.
+     * @param index Start index.
+     * @return the maximum length of flat sub-sequence.
+     */
+    private static int findMaxSubArray(int[] arr, int index)
+    {
+        if (index == arr.length - 1)
+            return 1;
+        else
+        {
+            return Math.max(lengthFlat(arr, index, arr[index], arr[index + 1], 1, arr[index] == arr[index + 1]), findMaxSubArray(arr, index + 1));
+        }
+    }
 }
