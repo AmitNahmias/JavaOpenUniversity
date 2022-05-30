@@ -91,11 +91,16 @@ public class Set {
     public void addToSet(int x) {
         if (x % 2 == 0 || isMember(x) || x < 0) // In case of even number or already inside the set or negative number.
             return;
-        else if (isEmpty()) { // In case the set is empty.
+        else if (isEmpty())
+        { // In case the set is empty.
             _head = new IntNode(x, null);
-        } else if (x < _head.getValue()) { // Smaller than head.
+        }
+        else if (x < _head.getValue())
+        { // Smaller than head.
             _head = new IntNode(x, _head);
-        } else { // In case of _head value's < x
+        }
+        else
+        { // In case of _head value's < x
             for (IntNode temp = _head; temp != null; temp = temp.getNext()) {
                 if (temp.getNext() == null)
                 { // In case the number than bigger all elements and should be last.
@@ -222,19 +227,22 @@ public class Set {
      * @param other Set to cross with.
      * @return New set of the intersection.
      */
-    public Set intersection(Set other) {
+    public Set intersection(Set other)
+    {
         if (other.isEmpty() || isEmpty()) // If one is empty the intersection is empty.
             return new Set();
         else if (this.equals(other) || this.subSet(other)) // Sets are equal or input set is subset of current set.
             return new Set(other);
         else if (other.subSet(this)) // Current set is subset of input set.
             return new Set(this);
-        else {
+        else
+        {
             IntNode prevNode = _head;
             IntNode prevOtherNode = other._head;
             Set result = new Set();
 
-            while (prevNode != null && prevOtherNode != null && prevNode.getValue() != prevOtherNode.getValue()) { // Find the first intersection.
+            while (prevNode != null && prevOtherNode != null && prevNode.getValue() != prevOtherNode.getValue())
+            { // Find the first intersection.
                 if (prevNode.getValue() < prevOtherNode.getValue())
                     prevNode = prevNode.getNext();
                 else
@@ -249,12 +257,14 @@ public class Set {
             IntNode tempNode = result._head;
 
             for (IntNode node = prevNode.getNext(), otherNode = prevOtherNode.getNext(); otherNode != null && node != null; ) {
-                if (node.getValue() == otherNode.getValue()) {
+                if (node.getValue() == otherNode.getValue())
+                {
                     tempNode.setNext(new IntNode(node.getValue(), null));
                     result._length++;
                     node = node.getNext();
                     otherNode = otherNode.getNext();
-                } else if (node.getValue() < otherNode.getValue())
+                }
+                else if (node.getValue() < otherNode.getValue())
                     node = node.getNext();
                 else
                     otherNode = otherNode.getNext();
@@ -263,43 +273,81 @@ public class Set {
         }
     }
 
-//    private Set intersection(Set other, IntNode node, IntNode prevNode, IntNode otherNode, IntNode otherPrevNode) {
-//        Set result = new Set();
-//        if (node == null || otherNode == null)
-//            return null;
-//        if (node.getValue() == otherNode.getValue())
-//        {
-//            result._length++;
-//
-//
-//        }
-//
-//
-//    }
 
-//    public Set union(Set other) {
-//        if (other.isEmpty()) // If other set is empty the union is current set.
-//            return new Set(this);
-//        else if (this.isEmpty()) // If current set is empty the union is other set.
-//            return new Set(other);
-//        else if (this.equals(other) || this.subSet(other)) // Sets are equal or input set is subset of current set.
-//            return new Set(this);
-//        else if (other.subSet(this)) // Current set is subset of input set.
-//            return new Set(other);
-//        else {
-//            Set result = new Set();
-//
-//            for (IntNode node = _head, otherNode = other._head; node != null && otherNode != null; ) {
-//                if (node.getValue() == otherNode.getValue()) {
-//                    result.addToSet(node.getValue());
-//                    node = node.getNext();
-//                    otherNode = otherNode.getNext();
-//                } else if (node.getValue() < otherNode.getValue())
-//                    node = node.getNext();
-//                else
-//                    otherNode = otherNode.getNext();
-//            }
-//            return result;
-//        }
-//    }
+    public Set union(Set other)
+    {
+        if (other.isEmpty() || this.equals(other) || this.subSet(other) )
+            // If other set is empty the union is current set or sets are equal or input set is subset of current set.
+            return new Set(this);
+        else if (this.isEmpty() || other.subSet(this))
+            // If current set is empty the union is other set or current set is subset of input set.
+            return new Set(other);
+        else
+        {
+            Set result = new Set();
+            IntNode node = _head;
+            IntNode otherNode = other._head;
+            IntNode temp;
+
+            // Find the head of the union
+            if (node.getValue() == otherNode.getValue())
+            {
+                result._head = new IntNode(node.getValue(), null);
+                node = node.getNext();
+                otherNode = otherNode.getNext();
+            }
+            else if (node.getValue() < otherNode.getValue())
+            {
+                result._head = new IntNode(node.getValue(), null);
+                node = node.getNext();
+            }
+            else
+            {
+                result._head = new IntNode(otherNode.getValue(), null);
+                otherNode = otherNode.getNext();
+            }
+
+            temp = result._head;
+            result._length++;
+
+            while (node!=null || otherNode!=null)
+            {
+                if(node==null)
+                {
+                    temp.setNext(new IntNode(otherNode.getValue(),null));
+                    otherNode = otherNode.getNext();
+                    temp = temp.getNext();
+                }
+                else if (otherNode==null)
+                {
+                    temp.setNext(new IntNode(node.getValue(),null));
+                    node = node.getNext();
+                    temp = temp.getNext();
+                }
+                else
+                {
+                    if (node.getValue()== otherNode.getValue())
+                    {
+                        temp.setNext(new IntNode(node.getValue(), null));
+                        node = node.getNext();
+                        otherNode = otherNode.getNext();
+                    }
+                    else if(node.getValue() < otherNode.getValue())
+                    {
+                        temp.setNext(new IntNode(node.getValue(),null));
+                        node = node.getNext();
+                    }
+                    else
+                    {
+                        temp.setNext(new IntNode(otherNode.getValue(), null));
+                        otherNode = otherNode.getNext();
+                    }
+                }
+                temp = temp.getNext();
+                result._length++;
+            }
+        return result;
+        }
+    }
+
 }
