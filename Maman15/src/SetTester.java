@@ -78,29 +78,32 @@ public class SetTester {
         Set s3 = s1.intersection(s2);
         System.out.println("Intersection between sets " + s1 + " and " + s2 + " should be: {3} - " + getOutputText("{3}".equals(s3.toString())));
 
-//        /* union */
-//        System.out.print("Testing union: ");
-//        s1 = new Set();
-//        s1.addToSet(1);
-//        s1.addToSet(3);
-//        s2 = new Set();
-//        s2.addToSet(9);
-//        s2.addToSet(3);
-//        s3 = s1.union(s2);
-//        System.out.println("union between sets " + s1 + " and " + s2 + " - " + getOutputText("{1,3,9}".equals(s3.toString()) || "{1,9,3}".equals(s3.toString()) ||
-//            "{3,1,9}".equals(s3.toString()) || "{3,9,1}".equals(s3.toString()) || "{9,1,3}".equals(s3.toString()) || "{9,3,1}".equals(s3.toString())));
-//
-//        /* difference */
-//        System.out.print("Testing difference: ");
-//        s1 = new Set();
-//        s1.addToSet(1);
-//        s1.addToSet(3);
-//        s2 = new Set();
-//        s2.addToSet(1);
-//        s2.addToSet(7);
-//        s2.addToSet(3);
-//        s3 = s1.difference(s2);
-//        System.out.println("difference between sets " + s1 + " and " + s2 + " should be: {} - " + getOutputText("{}".equals(s3.toString())));
+        /* union */
+        System.out.print("Testing union: ");
+        s1 = new Set();
+        s1.addToSet(1);
+        s1.addToSet(3);
+        s2 = new Set();
+        s2.addToSet(9);
+        s2.addToSet(3);
+        s3 = s1.union(s2);
+        System.out.println("union between sets " + s1 + " and " + s2 + " - " + getOutputText("{1,3,9}".equals(s3.toString()) || "{1,9,3}".equals(s3.toString()) ||
+            "{3,1,9}".equals(s3.toString()) || "{3,9,1}".equals(s3.toString()) || "{9,1,3}".equals(s3.toString()) || "{9,3,1}".equals(s3.toString())));
+
+        /* difference */
+        System.out.print("Testing difference: ");
+        s1 = new Set();
+        s1.addToSet(1);
+        s1.addToSet(3);
+        s1.addToSet(11);
+//        s1.addToSet(17);
+        s2 = new Set();
+        s2.addToSet(1);
+        s2.addToSet(7);
+//        s2.addToSet(13);
+        s2.addToSet(3);
+        s3 = s1.difference(s2);
+        System.out.println("difference between sets " + s1 + " and " + s2 + " should be: {} - " + getOutputText("{}".equals(s3.toString())));
     }
     
     private static String getOutputText(boolean result) {

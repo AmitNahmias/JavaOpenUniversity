@@ -40,6 +40,7 @@ public class Set {
 
     }
 
+
     /**
      * Returns true if the Set is empty.
      * <p>
@@ -130,7 +131,7 @@ public class Set {
             for (IntNode temp = _head; temp != null; temp = temp.getNext()) {
                 if (temp.getNext().getValue() == x) { // Found the node to remove.
                     temp.setNext(temp.getNext().getNext());
-                    return;
+                    break;
                 }
             }
         }
@@ -243,6 +244,7 @@ public class Set {
             for (IntNode node = prevNode.getNext(), otherNode = prevOtherNode.getNext(); otherNode != null && node != null; ) {
                 if (node.getValue() == otherNode.getValue()) {
                     tempNode.setNext(new IntNode(node.getValue(), null));
+                    tempNode = tempNode.getNext();
                     result._length++;
                     node = node.getNext();
                     otherNode = otherNode.getNext();
@@ -323,8 +325,9 @@ public class Set {
     /**
      * Return the difference between current set to input set.
      * <p>
-     *     The memory complexity and the runtime efficiency is O(n).
+     * The memory complexity and the runtime efficiency is O(n).
      * </p>
+     *
      * @param other Set to compare with.
      * @return New set without the common elements.
      */
