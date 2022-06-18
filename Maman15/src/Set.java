@@ -91,20 +91,30 @@ public class Set {
      *
      * @param x Element to insert.
      */
-    public void addToSet(int x) {
+    public void addToSet(int x)
+    {
         if (x % 2 == 0 || isMember(x) || x < 0) // In case of even number or already inside the set or negative number.
             return;
-        else if (isEmpty()) { // In case the set is empty.
+        else if (isEmpty())
+        { // In case the set is empty.
             _head = new IntNode(x, null);
-        } else if (x < _head.getValue()) { // Smaller than head.
+        }
+        else if (x < _head.getValue())
+        { // Smaller than head.
             _head = new IntNode(x, _head);
-        } else { // In case of _head value's < x
-            for (IntNode temp = _head; temp != null; temp = temp.getNext()) {
-                if (temp.getNext() == null) { // In case the number than bigger all elements and should be last.
+        }
+        else
+        { // In case of _head value's < x
+            for (IntNode temp = _head; temp != null; temp = temp.getNext())
+            {
+                if (temp.getNext() == null)
+                { // In case the number than bigger all elements and should be last.
                     IntNode newNode = new IntNode(x, temp.getNext());
                     temp.setNext(newNode);
                     break;
-                } else if (temp.getNext().getValue() > x) { // In case the number is between two elements.
+                }
+                else if (temp.getNext().getValue() > x)
+                { // In case the number is between two elements.
                     IntNode newNode = new IntNode(x, temp.getNext());
                     temp.setNext(newNode);
                     break;
@@ -360,6 +370,10 @@ public class Set {
             }
             return copy;
         }
+    }
+
+    public IntNode getHead() {
+        return _head;
     }
 }
 

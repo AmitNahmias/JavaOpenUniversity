@@ -10,8 +10,7 @@
  * @author Amit Nahmias
  * @version 21.5.22
  */
-public class Ex14
-{
+public class Ex14 {
 
     /**
      * Get sorted two dimensions array according to what function and return if value inside him in O(n) run time.
@@ -30,11 +29,9 @@ public class Ex14
      * @param val Value to search inside m.
      * @return True if val inside m, otherwise false.
      */
-    public static boolean findValWhat(int[][] m, int val)
-    {
+    public static boolean findValWhat(int[][] m, int val) {
         int row = m.length - 1, column = 0;
-        while (column < m.length && row >= 0)
-        {
+        while (column < m.length && row >= 0) {
             int temp = m[row][column];
             if (temp == val) return true;
             else if (temp > val) row--;
@@ -62,11 +59,9 @@ public class Ex14
      * @param val Value to search inside m.
      * @return True if val inside m, otherwise false.
      */
-    public static boolean findValTest(int[][] m, int val)
-    {
+    public static boolean findValTest(int[][] m, int val) {
         int low = 0, high = m.length - 1, mid;
-        while (low < high - 1)
-        {
+        while (low < high - 1) {
             mid = (low + high) / 2;
             if (m[mid][0] == val)
                 return true;
@@ -94,20 +89,17 @@ public class Ex14
      * @param a Input array.
      * @return The number of sorted sub-arrays.
      */
-    public static int strictlyIncreasing(int[] a)
-    {
+    public static int strictlyIncreasing(int[] a) {
         int sum = 0, counter = 1;
-        for (int i = 0; i < a.length - 1; i++)
-        {
-            if (a[i] < a[i + 1])
-            {
+        for (int i = 0; i < a.length - 1; i++) {
+            if (a[i] < a[i + 1]) {
                 counter++;
                 sum = sum + counter - 1;
-            }
-            else counter = 1;
+            } else counter = 1;
         }
         return sum;
     }
+
 
     /**
      * Find the length of the longest flat sub-sequence in array.
@@ -115,8 +107,7 @@ public class Ex14
      * @param arr Input array - full in integers.
      * @return The length of the longest flat sub-sequence in array.
      */
-    public static int longestFlatSequence(int[] arr)
-    {
+    public static int longestFlatSequence(int[] arr) {
         if (arr.length <= 1)
             return arr.length;
         return findMaxSubArray(arr, 0);
@@ -133,37 +124,26 @@ public class Ex14
      * @param equal   Indicate if first and second are the same.
      * @return Length of flat sequence (counter).
      */
-    public static int lengthFlat(int[] arr, int index, int first, int second, int counter, boolean equal)
-    {
+    public static int lengthFlat(int[] arr, int index, int first, int second, int counter, boolean equal) {
         if (index == arr.length - 1)
             return counter;
-        else if (equal)
-        {
-            if (arr[index + 1] == first)
-            {
+        else if (equal) {
+            if (arr[index + 1] == first) {
                 return lengthFlat(arr, index + 1, first, second, counter + 1, true);
-            }
-            else if (arr[index + 1] + 1 == first || arr[index + 1] - 1 == first)
-            {
+            } else if (arr[index + 1] + 1 == first || arr[index + 1] - 1 == first) {
                 return lengthFlat(arr, index + 1, first, arr[index + 1], counter + 1, false);
-            }
-            else return counter;
-        }
-        else
-        {
-            if (arr[index + 1] == first || arr[index + 1] == second && (first - second == 1 || first - second == -1))
-            {
+            } else return counter;
+        } else {
+            if (arr[index + 1] == first || arr[index + 1] == second && (first - second == 1 || first - second == -1)) {
                 return lengthFlat(arr, index + 1, first, second, counter + 1, false);
             } else return counter;
         }
     }
 
-    private static int findMaxSubArray(int[] arr, int index)
-    {
+    private static int findMaxSubArray(int[] arr, int index) {
         if (index == arr.length - 1)
             return 1;
-        else
-        { // Find the maximum length of flat sub-sequence inside array.
+        else { // Find the maximum length of flat sub-sequence inside array.
             return Math.max(lengthFlat(arr, index, arr[index], arr[index + 1], 1, arr[index] == arr[index + 1]), findMaxSubArray(arr, index + 1));
         }
     }
@@ -174,14 +154,12 @@ public class Ex14
      * @param mat Input two dimensions array.
      * @return The longest track in array.
      */
-    public static int findMaximum(int[][] mat)
-    {
+    public static int findMaximum(int[][] mat) {
         if (mat[0][0] == -1) return -1;
         return mat[0][0] + findMaximum(mat, 0, 0);
     }
 
-    private static int findMaximum(int[][] mat, int row, int column)
-    {
+    private static int findMaximum(int[][] mat, int row, int column) {
         int down = 0, right = 0, left = 0;
 
         if (row < mat.length - 1) // Verify array limits
@@ -196,24 +174,22 @@ public class Ex14
                 if (mat[row][column + 1] == 0 || mat[row][column + 1] == 1)
                     // going column right to 0 or 1
                     right = mat[row][column + 1] + findMaximum(mat, row, column + 1);
-        }
-        else // row index is odd.
+        } else // row index is odd.
         {
             if (column - 1 >= 0) // Verify array limits
                 if (mat[row][column - 1] == 0 || mat[row][column - 1] == 1)
                     // going column left to 0 or 1
                     left = mat[row][column - 1] + findMaximum(mat, row, column - 1);
         }
-        return max(max(down,left),right);
+        return max(max(down, left), right);
     }
 
 
-    private static boolean isEval(int number)
-    { // returns if number is eval.
+    private static boolean isEval(int number) { // returns if number is eval.
         return number % 2 == 0;
     }
-    private static int max(int number1, int number2)
-    { // return the bigger number from two input integers.
+
+    private static int max(int number1, int number2) { // return the bigger number from two input integers.
         return number1 > number2 ? number1 : number2;
     }
 
