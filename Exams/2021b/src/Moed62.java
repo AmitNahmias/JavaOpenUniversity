@@ -8,10 +8,12 @@ public class Moed62 {
     }
 
     public static boolean equalSplit(int[] arr, int sum1, int count1, int sum2, int count2, int pos) {
-        if (pos < arr.length) {
+        if (pos < arr.length)
+        {
             return equalSplit(arr, sum1 + arr[pos], count1 + 1, sum2, count2, pos + 1) ||
                     equalSplit(arr, sum1, count1, sum2 + arr[pos], count2 + 1, pos + 1);
-        } else
+        }
+        else
             return (sum1 == sum2 && count1 == count2);
     }
 
